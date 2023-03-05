@@ -1,0 +1,27 @@
+{
+  "name": "api_cyclic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo \"No build specified\" && exit 1",
+    "test": "echo \"No test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ToJoh123/api_cyclic.git"
+  },
+  "author": "Tojo123",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ToJoh123/api_cyclic/issues"
+  },
+  "homepage": "https://github.com/ToJoh123/api_cyclic#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "joi": "^17.8.3"
+  }
+}
