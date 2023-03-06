@@ -1,4 +1,4 @@
-const { countries } = require('../../databas/land')
+const { countries } = require('../../database/land')
 const joi = require('joi')
 
 exports.patchFunction = function patchFunction (req, res) {

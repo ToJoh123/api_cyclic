@@ -1,4 +1,4 @@
-const { countries } = require('../../databas/land')
+const { countries } = require('../../database/land')
 
 exports.getFunction = function getFunction(req, res) {
    const keys = Object.keys(req.query)

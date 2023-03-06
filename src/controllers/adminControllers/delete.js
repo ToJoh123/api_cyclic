@@ -1,4 +1,4 @@
-const { countries } = require('../../databas/land')
+const { countries } = require('../../database/land')
 
 exports.deleteFunction = function deleteFunction (req, res) {
     const { name } = req.body;

@@ -1,4 +1,4 @@
-const { countries } = require('../../databas/land')
+const { countries } = require('../../database/land')
 const joi = require('joi')
 
 exports.postFunction = function postFunction (req, res) {

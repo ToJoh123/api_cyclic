@@ -1,4 +1,4 @@
-const { users } = require('../../databas/users')
+const { users } = require('../../database/users')
 
 
 exports.login = function login (req, res) {

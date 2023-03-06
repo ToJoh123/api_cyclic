@@ -1,5 +1,5 @@
 const joi = require('joi');
-const { users } = require('../../databas/users');
+const { users } = require('../../database/users');
 
 exports.Register = function Register (req, res) {
     const schema = joi.object({
