@@ -3,6 +3,7 @@
  * Question: what can be solved in the database, and what should be solved in the code?
  * Changing the name of a country is not possible in the database, so it should be solved in the code
  * Should we query the database to check if the country exists? Or should we just try to update it and catch the error?
+ * issue: if we try to update a name we can't update the name in the database, so we need to delete the old country and add a new one
  */
 
 const joi = require('joi')

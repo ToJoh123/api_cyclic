@@ -1,8 +1,12 @@
-
+// path: src/routes/userRoutes/get.js
 const mysql = require('mysql2'); //database
 const {config} = require('../../database/config');
+
+
 const pool = mysql.createPool(config);
 let data = []
+
+// make a function to get all the data from the database
 pool.query("SELECT * FROM Countries", function(err, rows, fields) {
   // Connection is automatically released when query resolves'
   if (err) {
@@ -18,6 +22,7 @@ pool.query("SELECT * FROM Countries", function(err, rows, fields) {
 
 
 exports.getFunction = function getFunction(req, res) {
+
   const countryURL  = req.params.id
   if (!countryURL) {
     names = []

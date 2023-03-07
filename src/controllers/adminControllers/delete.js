@@ -1,15 +1,32 @@
-const { countries } = require('../../database/land')
+/**
+ * delete a country from the database
+ */
+
+//database connection, TO DO: move to separate file, maybe use mysql2/promise
+const mysql = require('mysql2'); 
+const {config} = require('../../database/config');
+const pool = mysql.createPool(config);
 
 exports.deleteFunction = function deleteFunction (req, res) {
+
     const { name } = req.body;
-    const land = countries.findIndex(chosenCountry => chosenCountry.name === name);
-
-    if (land === -1) {
-        return res.status(404).send(`${name} doesnt exist in our database`)
+    pool.execute('DELETE FROM Countries WHERE Name = ?', [name], (err, result) => {
+        if (err) {
+            console.log(err)
+            res.status(500).send('Something went wrong')
+            return;
+        }
+        if (result.affectedRows === 0) {
+            res.status(404).send('Country does not exist')
+            return;
+        }
+        if (result.affectedRows === 1) {
+            res.status(200).send('Country deleted')
+            return;
+        }
+        res.status(200).send(result)
     }
+    )
 
-    countries.splice(land, 1)
-    res.send(`Deleted ${name}`)
-    
 }
 

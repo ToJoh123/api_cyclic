@@ -25,17 +25,16 @@ exports.postFunction = function postFunction (req, res) {
         if (err) {
             console.log(err)
             if (err.code === 'ER_DUP_ENTRY') {
-                res.status(400).send('Country already exists or already has a capital')
-                return;
-            }
-            if (err.code === 'ER_NO_REFERENCED_ROW_2') {
-                res.status(400).send('Country does not exist')
+                res.status(400).send('Country already exists ')
                 return;
             }
             res.status(500).send('Something went wrong')
             return;
         }
-        res.status(201).send(result)
+        if (result.affectedRows === 1) {
+            res.status(200).send('Country added')
+            return;
+        }
     }
     )
 
