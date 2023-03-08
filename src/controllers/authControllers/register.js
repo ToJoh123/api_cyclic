@@ -3,22 +3,7 @@ const mysql = require('mysql2'); //database
 const {config} = require('../../database/config');
 const joi = require('joi'); //validation
 
-
 const pool = mysql.createPool(config);
-let queryResult;
-let queryError;
-pool.query("SELECT * FROM users_test_simple", function(err, rows, fields) {  //behöver vi skicka errors till frontend?
-  if (!err) {
-      queryResult = rows;
-      return
-  }
-    else {
-        queryError = err;
-        console.log('Error while performing Query.', err);
-        }
-  }
-  ) 
-
 exports.Register = function Register (req, res) {
     const schema = joi.object({
         username: joi.string().min(3).max(15).required(),

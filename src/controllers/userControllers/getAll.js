@@ -1,8 +1,8 @@
 // path: src/routes/userRoutes/get.js
 const mysql = require('mysql2'); //database
 const {config} = require('../../database/config');
-const pool = mysql.createPool(config);
 
+const pool = mysql.createPool(config);
 exports.getAllFunction = function getAllFunction(req, res) {
     pool.execute("SELECT * FROM Countries", function(err, rows, fields) {
       if (err) {
