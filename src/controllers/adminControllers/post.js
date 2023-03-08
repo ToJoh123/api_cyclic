@@ -5,12 +5,12 @@ const {config} = require('../../database/config');
 const pool = mysql.createPool(config);
 
 //validation
-    const schema = joi.object({
-        name: joi.string().required(),
-        capital: joi.string().required(),
-        population: joi.number().required()
-    })
-    
+const schema = joi.object({
+    name: joi.string().required(),
+    capital: joi.string().required(),
+    population: joi.number().required()
+})
+
 exports.postFunction = function postFunction (req, res) {
 
     const validate = schema.validate(req.body);
