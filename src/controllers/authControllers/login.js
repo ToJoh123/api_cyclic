@@ -2,7 +2,7 @@
 const mysql = require('mysql2'); //database
 const {config} = require('../../database/config');
 const joi = require('joi'); //validation
-
+const bcrypt = require('bcrypt');// 
 const pool = mysql.createPool(config);
 const schema = joi.object({
     username: joi.string().min(3).max(15).required(),
@@ -10,29 +10,31 @@ const schema = joi.object({
  })
 
 exports.login = function login (req, res) {
-     username = req.body.username;
-
      const validate = schema.validate(req.body)
      if (validate.error) {
         return res.status(400).json(validate.error.details[0].message);
      }
+     const getPassword = `
+     SELECT password FROM users_test_simple WHERE Username=?`;
 
-     pool.execute("SELECT * FROM users_test_simple WHERE username = ? " ,[req.body.username],function(err, rows, fields) {  
+     pool.execute(getPassword,[req.body.username],function(err, rows, fields) {  
         if (err) {
             return res.status(500).json("error while performing query")
         }
-        if(rows[0] === undefined){ //Fun fact. If you check for password before username program will crash
-            return res.status(404).json("wrong username")
-        }
-        if (rows[0].password !== req.body.password) {
-            return res.status(400).json('password is incorrect')
-        }
 
-        if (username === 'admin') {
+        if (rows.length === 0) {
+            return res.status(400).json("user not found")
+        }
+        if (req.body.username === 'admin') {
             res.cookie("authToken", "admin", {
                 maxAge: 3600000
             })
         }
+        const isPasswordCorrect = bcrypt.compareSync(req.body.password, rows[0].password);
+        if (!isPasswordCorrect) {
+            return res.status(400).json("wrong password")
+        }
+        
         res.status(200).json('login successful')
     }) 
 }
