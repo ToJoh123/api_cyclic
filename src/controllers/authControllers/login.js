@@ -32,9 +32,9 @@ exports.login = function login (req, res) {
         }
         const isPasswordCorrect = bcrypt.compareSync(req.body.password, rows[0].password);
         if (!isPasswordCorrect) {
-            return res.status(400).json("wrong password")
+            return res.status(401).json("wrong password")
         }
-        
+
         res.status(200).json('login successful')
     }) 
 }
