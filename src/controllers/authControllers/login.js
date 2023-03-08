@@ -3,8 +3,6 @@ const mysql = require('mysql2'); //database
 const {config} = require('../../database/config');
 const joi = require('joi'); //validation
 
-
-
 const pool = mysql.createPool(config);
 const schema = joi.object({
     username: joi.string().min(3).max(15).required(),
@@ -37,8 +35,4 @@ exports.login = function login (req, res) {
         }
         res.status(200).json('login successful')
     }) 
-
-      
-
-     
 }

@@ -1,7 +1,8 @@
 const express = require('express');
-const {getFunction} = require('../controllers/userControllers/get');
+const {getAllFunction} = require('../controllers/userControllers/getAll');
+const { getIdFunction } = require('../controllers/userControllers/getId');
 const userRoute = express.Router();
-userRoute.get('/', getFunction);
-userRoute.get('/:id', getFunction);
+userRoute.get('/', getAllFunction);
+userRoute.get('/:id', getIdFunction);
 
 exports.userRoute = userRoute;
